@@ -170,6 +170,8 @@ public class CardboardReticlePointer : MonoBehaviour
         }
         else
         {
+            if(!_gazedAtObject) return;
+            
             // No GameObject detected in front of the camera.
             if (IsInteractive(_gazedAtObject))
             {
@@ -183,6 +185,7 @@ public class CardboardReticlePointer : MonoBehaviour
         // Checks for screen touches.
         if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
+            if(!_gazedAtObject) return;
             if (IsInteractive(_gazedAtObject))
             {
                 _gazedAtObject?.SendMessage("OnPointerClick");
