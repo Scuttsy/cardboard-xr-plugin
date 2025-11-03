@@ -149,7 +149,7 @@ public class CardboardReticlePointer : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _RETICLE_MAX_DISTANCE))
         {
-            if(_gazedAtObject == null) return;  
+            // if(_gazedAtObject == null) return;  
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
             {
@@ -171,7 +171,7 @@ public class CardboardReticlePointer : MonoBehaviour
         }
         else
         {
-            if(_gazedAtObject == null) return;  
+            // if(_gazedAtObject == null) return;  
             // No GameObject detected in front of the camera.
             if (IsInteractive(_gazedAtObject))
             {
@@ -326,6 +326,7 @@ public class CardboardReticlePointer : MonoBehaviour
     /// <returns>Whether or not a GameObject's layer is interactive.</returns>
     private bool IsInteractive(GameObject gameObject)
     {
+        if (!gameObject) return false;
         return (1 << gameObject?.layer & ReticleInteractionLayerMask) != 0;
     }
 }
